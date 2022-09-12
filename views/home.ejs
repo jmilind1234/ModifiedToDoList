@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="body-container">
+        <div id="main-container">
+            <h1>TODO App</h1>
+            <hr>
+            <form action="/addNewTask" method="POST">
+                <h6 id="desc">DESCRIPTION</h6>
+                <input type="text" id="description" name="description" placeholder="What do you need to do?">
+                <hr>
+                <div id="flex-container">
+                    <div id="category-container">
+                        <h6>CATEGORY</h6>
+                        <select name="category" id="task-category">
+                            <option value="personal">PERSONAL</option>
+                            <option value="school">SCHOOL</option>
+                            <option value="work">WORK</option>
+                            <option value="cleaning">CLEANING</option>
+                            <option value="other">OTHER</option>
+                        </select>
+                    </div>
+                    <div id="due-date-container">
+                        <h6>DUE DATE</h6>
+                        <input type="date" id="due-date" name="dueDate">
+                    </div>
+                </div>
+                <HR>
+                <div id="button-holder">
+                    <a>
+                        <button type="submit" id="task-adder">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            ADD TASK
+                        </button>
+                    </a>
+            </form>
+            <a id="deleting-link">
+                <button type="button" id="deleting-task">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    DELETE TASKS
+                </button>
+            </a>
+        </div>
+        <hr>
+        <ul style="list-style-type:none">
+            <%for(var i=0;i<tasks.length;i++){%>
+                <%let id=tasks[i]._id ;%>
+                    <li>
+                        <input type="radio" class="selected-task" value="selected-task" name="selected-task"
+                            onclick=changeDeleteUrl(<%=JSON.stringify(tasks[i]._id) %>)>
+                        <%= tasks[i].description %>
+                            <% id %>
+                    </li>
+                    <hr>
+                    <%}%>
+        </ul>
+    </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
